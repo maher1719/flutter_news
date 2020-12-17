@@ -4,14 +4,13 @@ import 'package:floor/floor.dart';
 class News {
   @primaryKey
   final String title;
-  @ignore
   final String author;
   final String description;
   final String urlToImage;
-  final String publshedAt;
+  final String publishedAt;
   final String content;
   final String articleUrl;
 
   News(this.title, this.author, this.description, this.urlToImage,
-      this.publshedAt, this.content, this.articleUrl);
+      this.publishedAt, this.content, this.articleUrl);
 }

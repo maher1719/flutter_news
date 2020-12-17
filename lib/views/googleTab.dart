@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:news_flutter/models/database/database.dart';
 import 'package:news_flutter/views/login/ui/signup.dart';
 
 import 'TabNavigationItem.dart';
@@ -19,6 +20,7 @@ class _ExampleState extends State<Example> {
     for (final tabItem in TabNavigationItem.items) tabItem.page,
 
   ];
+  //final database = await $FloorAppDatabase.databaseBuilder('app_database.db').build();
 
   @override
   Widget build(BuildContext context) {
