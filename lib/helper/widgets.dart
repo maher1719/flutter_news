@@ -2,24 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:news_flutter/views/article_view.dart';
 
 Widget MyAppBar(){
-  return AppBar(
+  /*return AppBar(
     title: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Text(
-          "Flutter",
-          style:
-          TextStyle(color: Colors.black87, fontWeight: FontWeight.w600),
-        ),
-        Text(
-          "News",
-          style: TextStyle(color: Colors.blue, fontWeight: FontWeight.w600),
-        )
-      ],
     ),
     backgroundColor: Colors.transparent,
     elevation: 0.0,
-  );
+  );*/
 }
 
 

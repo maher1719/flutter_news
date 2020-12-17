@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:news_flutter/views/googleTab.dart';
+import 'package:news_flutter/views/homepage.dart';
 import 'package:news_flutter/views/login/ui/signup.dart';
 import 'package:news_flutter/views/tab.dart';
 
@@ -21,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.white,
       ),
-      home: TabsPage(),
+      home: Example(),
     );
   }
 }

@@ -9,6 +9,9 @@ abstract class NewsDao {
   @Query('SELECT * FROM Person WHERE id = :id')
   Stream<News> findNewsById(String title);
 
+  @delete
+  Future<void> deleteTask(News news);
+
   @insert
   Future<void> insertNews(News news);
 }
