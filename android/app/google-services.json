@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "386523472469",
+    "project_id": "chat-96ed5",
+    "storage_bucket": "chat-96ed5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:386523472469:android:742b95d192011dd8206adc",
+        "android_client_info": {
+          "package_name": "com.example.news_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "386523472469-jpgfm0a023jil89j7lv521gugeb73cur.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAym6V4R9RotC4nJRguhz_AmUd5fgiFUQE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "386523472469-jpgfm0a023jil89j7lv521gugeb73cur.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
