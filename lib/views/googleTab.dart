@@ -2,8 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:news_flutter/models/database/database.dart';
-import 'package:news_flutter/views/login/ui/signup.dart';
+import 'package:news_flutter/views/login/ui/signin.dart';
 
 import 'TabNavigationItem.dart';
 
@@ -14,12 +13,33 @@ class Example extends StatefulWidget {
 
 class _ExampleState extends State<Example> {
   int _selectedIndex = 0;
+  User user;
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
     List<Widget> _widgetOptions = <Widget>[
     for (final tabItem in TabNavigationItem.items) tabItem.page,
 
   ];
+    void checkAuth() async{
+      FirebaseAuth.instance.authStateChanges().listen((User user) {
+        if (user == null) {
+          Navigator.push(context, MaterialPageRoute(
+              builder: (context) => SignInPage()
+          ));
+        } else {
+          this.user=user;
+          /*Toast.show("connected", context,
+                duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);*/
+        }
+      });
+    }
+    @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    checkAuth();
+
+    }
   //final database = await $FloorAppDatabase.databaseBuilder('app_database.db').build();
 
   @override
@@ -34,7 +54,7 @@ class _ExampleState extends State<Example> {
             onPressed: () async {
               await FirebaseAuth.instance.signOut();
               Navigator.push(context, MaterialPageRoute(
-                  builder: (context) => SignUpScreen()
+                  builder: (context) => SignInPage()
               ));
 
             },

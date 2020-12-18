@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:settings_ui/settings_ui.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'languages_screen.dart';
 
@@ -12,15 +13,23 @@ class _SettingsScreenState extends State<SettingsScreen> {
   bool lockInBackground = true;
   bool notificationsEnabled = true;
   int currentIndex;
+  SharedPreferences prefs;
+  _incrementCounter() async {
+    prefs = await SharedPreferences.getInstance();
+    int counter = (prefs.getInt('counter') ?? 0) + 1;
+    String lang= prefs.getString("lang")?? "en";
+    print('Pressed $counter times.');
+    await prefs.setInt('counter', counter);
+  }
   @override
   void initState() {
     currentIndex=1;
+
 
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Settings UI')),
       body: SettingsList(
         // backgroundColor: Colors.orange,
         sections: [

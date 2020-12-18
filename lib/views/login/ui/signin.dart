@@ -1,8 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:news_flutter/views/login/constants/constants.dart';
+import 'package:news_flutter/views/googleTab.dart';
+import 'package:news_flutter/views/login/ui/signup.dart';
 import 'package:news_flutter/views/login/ui/widgets/custom_shape.dart';
 import 'package:news_flutter/views/login/ui/widgets/responsive_ui.dart';
 import 'package:news_flutter/views/login/ui/widgets/textformfield.dart';
+import 'package:toast/toast.dart';
 
 
 class SignInPage extends StatelessWidget {
@@ -212,11 +215,31 @@ class _SignInScreenState extends State<SignInScreen> {
     return RaisedButton(
       elevation: 0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
-      onPressed: () {
-          print("Routing to your account");
-          Scaffold
-              .of(context)
-              .showSnackBar(SnackBar(content: Text('Login Successful')));
+      onPressed: () async {
+        try {
+          UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+              email: emailController.text,
+              password: passwordController.text
+          );
+        } on FirebaseAuthException catch (e) {
+          if (e.code == 'user-not-found') {
+            print('No user found for that email.');
+          } else if (e.code == 'wrong-password') {
+            print('Wrong password provided for that user.');
+          }
+        }
+        FirebaseAuth.instance.authStateChanges().listen((User user) {
+          if (user == null) {
+            Toast.show("not connected", context,
+                duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
+          } else {
+            Navigator.push(context, MaterialPageRoute(
+                builder: (context) => Example()
+            ));
+            /*Toast.show("connected", context,
+                duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);*/
+          }
+        });
 
       },
       textColor: Colors.white,
@@ -251,8 +274,9 @@ class _SignInScreenState extends State<SignInScreen> {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.of(context).pushNamed(SIGN_UP);
-              print("Routing to Sign up screen");
+              Navigator.push(context, MaterialPageRoute(
+                  builder: (context) => SignUpScreen()
+              ));
             },
             child: Text(
               "Sign up",
