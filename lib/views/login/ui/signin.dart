@@ -33,7 +33,11 @@ class _SignInScreenState extends State<SignInScreen> {
   TextEditingController passwordController = TextEditingController();
   GlobalKey<FormState> _key = GlobalKey();
 
-
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -217,18 +221,18 @@ class _SignInScreenState extends State<SignInScreen> {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
       onPressed: () async {
         try {
-          UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+           UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
               email: emailController.text,
               password: passwordController.text
           );
         } on FirebaseAuthException catch (e) {
-          if (e.code == 'user-not-found') {
+          if (e.code == 'user-not-found' || e.code == 'wrong-password') {
             print('No user found for that email.');
           } else if (e.code == 'wrong-password') {
             print('Wrong password provided for that user.');
           }
         }
-        FirebaseAuth.instance.authStateChanges().listen((User user) {
+        await FirebaseAuth.instance.authStateChanges().listen((User user) {
           if (user == null) {
             Toast.show("not connected", context,
                 duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:news_flutter/models/database/database.dart';
+import 'package:news_flutter/models/database/entities/Settings.dart';
 import 'package:settings_ui/settings_ui.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'languages_screen.dart';
 
 class SettingsScreen extends StatefulWidget {
+
   @override
   _SettingsScreenState createState() => _SettingsScreenState();
 }
@@ -13,17 +16,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
   bool lockInBackground = true;
   bool notificationsEnabled = true;
   int currentIndex;
+  var result;
   SharedPreferences prefs;
-  _incrementCounter() async {
-    prefs = await SharedPreferences.getInstance();
-    int counter = (prefs.getInt('counter') ?? 0) + 1;
-    String lang= prefs.getString("lang")?? "en";
-    print('Pressed $counter times.');
-    await prefs.setInt('counter', counter);
+  prefrences() async {
+
+
+
   }
   @override
-  void initState() {
+  void initState() async {
+    super.initState();
     currentIndex=1;
+    prefrences();
 
 
   }
@@ -39,7 +43,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             tiles: [
               SettingsTile(
                 title: 'Language',
-                subtitle: 'English',
+                subtitle: "English",
                 leading: Icon(Icons.language),
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(

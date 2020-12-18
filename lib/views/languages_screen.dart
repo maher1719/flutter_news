@@ -56,7 +56,7 @@ class _LanguagesScreenState extends State<LanguagesScreen> {
         : Icon(null);
   }
 
-  void changeLanguage(int index) {
+  void changeLanguage(int index) async {
     setState(() {
       languageIndex = index;
     });

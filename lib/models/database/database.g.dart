@@ -286,14 +286,14 @@ class _$SettingsDao extends SettingsDao {
   final UpdateAdapter<Settings> _settingsUpdateAdapter;
 
   @override
-  Future<List<Settings>> findAllPersons() async {
+  Future<List<Settings>> findAllSetting() async {
     return _queryAdapter.queryList('SELECT * FROM Person',
         mapper: (Map<String, dynamic> row) => Settings(
             row['id'] as int, row['country'] as String, row['lang'] as String));
   }
 
   @override
-  Future<void> insertPerson(Settings settings) async {
+  Future<void> insertSetting(Settings settings) async {
     await _settingsInsertionAdapter.insert(settings, OnConflictStrategy.abort);
   }
 

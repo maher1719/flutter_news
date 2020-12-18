@@ -21,7 +21,7 @@ class _ExampleState extends State<Example> {
 
   ];
     void checkAuth() async{
-      FirebaseAuth.instance.authStateChanges().listen((User user) {
+      await FirebaseAuth.instance.authStateChanges().listen((User user) {
         if (user == null) {
           Navigator.push(context, MaterialPageRoute(
               builder: (context) => SignInPage()
