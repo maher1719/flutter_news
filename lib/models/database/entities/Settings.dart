@@ -2,8 +2,8 @@ import 'package:floor/floor.dart';
 
 @entity
 class Settings {
-  @PrimaryKey(autoGenerate: true)
-  final String id;
+  @PrimaryKey()
+   final int id;
   final String country;
   final String lang;
 
